@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amigos dos Animais</title>
+  <!-- Link para o CSS principal -->
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Cabeçalho com navegação -->
+
+  <header>
+    <nav>
+      <!-- Logo da ONG -->
+
+      <img src="imagem/dog.png" alt="Logo Amigos dos Animais" class="logo">
+      <!-- Menu de navegação -->
+
+      <ul class="menu">
+        <li><a href="index.html" class="active" aria-current="page">Início</a></li>
+        <li><a href="projetos.html">Projetos</a></li>
+        <li><a href="cadastro.html">Cadastro</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main>
+    <!-- Seção de introdução -->
+    <section class="intro">
+      <h1>Amigos dos Animais</h1>
+      <p>Somos uma ONG dedicada à proteção, cuidado e adoção de animais abandonados. Junte-se a nós e ajude a transformar vidas!</p>
+    </section>
+
+    <!-- Seção sobre a ONG -->
+    <section class="sobre">
+      <h2>Sobre Nós</h2>
+      <p>Nossa missão é promover o bem-estar animal por meio de resgates, campanhas de adoção e conscientização sobre cuidados responsáveis.</p>
+      <img src="imagem/dog-oculos-1.png" alt="Dog de óculos">
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <p>&copy; 2025 Amigos dos Animais. Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

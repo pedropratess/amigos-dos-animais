@@ -1,0 +1,78 @@
+// ================================
+// VALIDAÇÃO E MÁSCARAS DE FORMULÁRIO
+// ================================
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("cadastroForm");
+  const mensagem = document.getElementById("mensagem");
+
+  // Funções de máscara para CPF, telefone e CEP
+  const maskCPF = (value) =>
+    value.replace(/\D/g, "")
+         .replace(/(\d{3})(\d)/, "$1.$2")
+         .replace(/(\d{3})(\d)/, "$1.$2")
+         .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+
+  const maskTelefone = (value) =>
+    value.replace(/\D/g, "")
+         .replace(/(\d{2})(\d)/, "($1) $2")
+         .replace(/(\d{5})(\d)/, "$1-$2");
+
+  const maskCEP = (value) =>
+    value.replace(/\D/g, "").replace(/(\d{5})(\d)/, "$1-$2");
+
+  if (form) {
+    // Evento de submit
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Captura valores
+      const nome = document.getElementById("nome").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const senha = document.getElementById("senha").value.trim();
+      const cpf = document.getElementById("cpf").value.trim();
+      const telefone = document.getElementById("telefone").value.trim();
+      const cep = document.getElementById("cep").value.trim();
+
+      // Limpa mensagens anteriores
+      mensagem.textContent = "";
+      mensagem.className = "";
+
+      // Validação geral
+      if (!nome || !email || !senha || !cpf || !telefone || !cep) {
+        mensagem.textContent = "Por favor, preencha todos os campos.";
+        mensagem.className = "erro";
+        return;
+      }
+
+      // Valida e-mail
+      const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!regexEmail.test(email)) {
+        mensagem.textContent = "Digite um e-mail válido.";
+        mensagem.className = "erro";
+        return;
+      }
+
+      // Valida senha
+      if (senha.length < 6) {
+        mensagem.textContent = "A senha deve ter pelo menos 6 caracteres.";
+        mensagem.className = "erro";
+        return;
+      }
+
+      // Salva usuário no localStorage (simulação)
+      const usuario = { nome, email, cpf, telefone, cep };
+      localStorage.setItem("usuario", JSON.stringify(usuario));
+
+      mensagem.textContent = "Cadastro realizado com sucesso!";
+      mensagem.className = "sucesso";
+
+      // Limpa formulário
+      form.reset();
+    });
+
+    // Aplica máscaras enquanto digita
+    document.getElementById("cpf").addEventListener("input", (e) => { e.target.value = maskCPF(e.target.value); });
+    document.getElementById("telefone").addEventListener("input", (e) => { e.target.value = maskTelefone(e.target.value); });
+    document.getElementById("cep").addEventListener("input", (e) => { e.target.value = maskCEP(e.target.value); });
+  }
+});
